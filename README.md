@@ -20,5 +20,5 @@
 |--------------|---------|
 | **フロントエンド & バックエンド** | Next.js + TypeScript |
 | **データベース** | PostgreSQL (Prisma 経由) |
-| **インフラ** | Docker (開発環境) / Vercel (本番環境) / GitHub (ソースコード管理) |
+| **インフラ** | Vercel (開発、デプロイ) / Supabase (Baas) / GitHub (ソースコード管理) |
 | **外部 API** | DeepL API (無料プラン) |
