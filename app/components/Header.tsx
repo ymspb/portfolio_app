@@ -14,7 +14,7 @@ const Header = () => {
       <NavigationMenu>
         <NavigationMenuList className="align-middle">
           <NavigationMenuItem>
-            <Link href="/notes" legacyBehavior passHref>
+            <Link href="/translation" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Translation
               </NavigationMenuLink>

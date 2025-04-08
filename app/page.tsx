@@ -18,7 +18,7 @@ export default function Home() {
         </div>
         <div className="p-5">
           <Button asChild>
-            <Link href="/translate" className="bg-blue-400">翻訳へ</Link>
+            <Link href="/translation" className="bg-blue-400">翻訳へ</Link>
           </Button>
         </div>
       </div>
