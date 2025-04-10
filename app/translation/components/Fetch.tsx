@@ -5,10 +5,16 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
 
-const Fetch: React.FC = () => {
+type translationProps = {
+  isJPToEN: boolean;
+}
+
+const Fetch = ({ isJPToEN }: translationProps) => {
   const [input, setInput] = useState("");
   const [translated, setTranslated] = useState("");
   const ENDPOINT = "/api/deepl";
+
+  const translateTo = (isJPToEN: boolean): string => isJPToEN ? "en-US" : "ja";
 
   const handleTranslate = async () => {
     const res = await fetch(ENDPOINT, {
@@ -26,7 +32,7 @@ const Fetch: React.FC = () => {
       <div className="translation-input flex flex-1 justify-center">
         <div className="w-full bg-red-500 m-3">
           <Textarea
-            placeholder="Type words or sentences you want to translate."
+            placeholder="Type the text you want to translate."
             className="h-full border-0 md:text-3xl"
             value={input}
             onChange={(e) => setInput(e.target.value)}

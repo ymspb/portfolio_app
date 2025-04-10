@@ -1,12 +1,13 @@
-"use client";
-
-import { useState } from "react";
 import { ArrowLeftRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
-const Header: React.FC = () => {
-  const [isJPToEN, setIsJPToEN] = useState(true);
+type translationProps = {
+  isJPToEN: boolean;
+  setIsJPToEN: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Header = ({ isJPToEN, setIsJPToEN }: translationProps) => {
   const getTargetAndResultLang = (isJPToEN: boolean): string =>
     isJPToEN ? "Japanese" : "English";
   return (
