@@ -15,8 +15,20 @@ const translator = new deepl.Translator(authKey);
 //     });
 // })();
 
-export async function POST(request: Request) {
-    const body = await request.json();
+export async function POST(req: Request) {
+    const body = await req.json();
     const text = body.text as string;
+    console.log(body.translateTo, body.translateFrom)
+    const targetLang: deepl.TargetLanguageCode = body.translateTo;
+    const sourceLang: deepl.SourceLanguageCode = body.translateFrom;
+
+    const result = await translator.translateText(
+        text,
+        sourceLang,
+        targetLang
+    );
+    console.log(result);
+    return Response.json({translated: result.text});
+    // return Response.json({translated: ""});
 }
 
