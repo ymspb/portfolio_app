@@ -1,15 +1,17 @@
 import { ArrowLeftRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { useContext } from "react";
+import { TranslationContext } from "../page";
 
-type translationProps = {
-  isJPToEN: boolean;
-  setIsJPToEN: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const Header = ({ isJPToEN, setIsJPToEN }: translationProps) => {
+const Header = () => {
+  const context = useContext(TranslationContext);
+  const { isJPToEN, setIsJPToEN } = context;
   const getTargetAndResultLang = (isJPToEN: boolean): string =>
     isJPToEN ? "Japanese" : "English";
+  const swapJPAndEN = () => {
+    setIsJPToEN((prev) => !prev);
+  };
   return (
     <div>
       <div className="translation-header flex flex-row h-[48px] mb-3">
@@ -19,7 +21,7 @@ const Header = ({ isJPToEN, setIsJPToEN }: translationProps) => {
         <Separator orientation="vertical" className="bg-black" />
         <div
           className="w-full md:basis-1/11 flex justify-center items-center"
-          onClick={() => setIsJPToEN((prev) => !prev)}
+          onClick={swapJPAndEN}
         >
           <Button className="border rounded-xs">
             <ArrowLeftRight />

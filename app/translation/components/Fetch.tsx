@@ -2,17 +2,13 @@
 
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
-import { useState } from "react";
+import { useContext } from "react";
+import { TranslationContext } from "../page";
 import Links from "./Links"
 
-type translationProps = {
-  isJPToEN: boolean;
-}
-
-const Fetch = ({ isJPToEN }: translationProps) => {
-  const [input, setInput] = useState("");
-  const [translated, setTranslated] = useState("");
-
+const Fetch = () => {
+  const context = useContext(TranslationContext);
+  const { isJPToEN, input, setInput, translated, setTranslated } = context;
   return (
     <>
       <div className="translation-input flex flex-1 justify-center">
