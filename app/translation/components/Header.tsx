@@ -6,11 +6,14 @@ import { TranslationContext } from "../page";
 
 const Header = () => {
   const context = useContext(TranslationContext);
-  const { isJPToEN, setIsJPToEN } = context;
+  const { isJPToEN, setIsJPToEN, input, setInput, translated, setTranslated } = context;
   const getTargetAndResultLang = (isJPToEN: boolean): string =>
     isJPToEN ? "Japanese" : "English";
   const swapJPAndEN = () => {
     setIsJPToEN((prev) => !prev);
+    const tmp = input;
+    setInput(translated);
+    setTranslated(tmp);
   };
   return (
     <div>
