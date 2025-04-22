@@ -8,7 +8,7 @@ import Links from "./Links"
 
 const Fetch = () => {
   const context = useContext(TranslationContext);
-  const { isJPToEN, input, setInput, translated, setTranslated } = context;
+  const { input, setInput, translated, setTranslated } = context;
   return (
     <>
       <div className="translation-input flex flex-1 justify-center">
@@ -26,7 +26,7 @@ const Fetch = () => {
         </div>
       </div>
       <Separator className="bg-black mb-3" />
-      <Links input={input} isJPToEN={isJPToEN} setTranslated={setTranslated}/>
+      <Links />
     </>
   );
 };

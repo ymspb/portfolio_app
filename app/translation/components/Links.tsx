@@ -1,14 +1,12 @@
 'use client'
 
 import { Button } from "@/components/ui/button";
+import { useContext } from "react";
+import { TranslationContext } from "../page";
 
-type translationProps = {
-  input: string;
-  isJPToEN: boolean;
-  setTranslated: React.Dispatch<React.SetStateAction<string>>
-}
-
-const Links = ({input, isJPToEN, setTranslated}: translationProps) => {
+const Links = () => {
+  const context = useContext(TranslationContext);
+  const { input, isJPToEN, setTranslated } = context;
   const getSourceAndTargetLang = (isJPToEN: boolean): {source: string; target: string;} => {
     if (isJPToEN) {
       return {source: 'ja', target: 'en-US'}
@@ -34,8 +32,8 @@ const Links = ({input, isJPToEN, setTranslated}: translationProps) => {
     setTranslated(data.translated);
   };
   return (
-    <div className="h-40 bg-yellow-300 mx-3">
-      <Button className="bg-blue-500" onClick={handleTranslate}>
+    <div className="h-40 bg-yellow-300 mx-3 flex justify-center">
+      <Button className="bg-blue-500 my-auto" onClick={handleTranslate}>
         Translate
       </Button>
     </div>

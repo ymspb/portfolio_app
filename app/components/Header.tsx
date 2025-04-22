@@ -24,7 +24,7 @@ const Header = () => {
                 aa
               </NavigationMenuLink>
             </Link>
-            <Link href="/notes" legacyBehavior passHref>
+            <Link href="/login" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Documentation
               </NavigationMenuLink>
