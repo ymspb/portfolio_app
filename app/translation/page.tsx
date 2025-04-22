@@ -26,7 +26,7 @@ const defaultContext = {
 
 export const TranslationContext = createContext<ContextType>(defaultContext);
 
-const page: React.FC = () => {
+const page = () => {
   const [isJPToEN, setIsJPToEN] = useState<boolean>(true);
   const [input, setInput] = useState("");
   const [translated, setTranslated] = useState("");
