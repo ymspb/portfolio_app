@@ -2,7 +2,7 @@ import { ArrowLeftRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useContext } from "react";
-import { TranslationContext } from "../page";
+import { TranslationContext } from "@/context/TranslationProvider";
 
 const Header = () => {
   const context = useContext(TranslationContext);

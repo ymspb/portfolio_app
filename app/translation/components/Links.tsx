@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useContext } from "react";
-import { TranslationContext } from "../page";
+import { TranslationContext } from "@/context/TranslationProvider";
 
 const Links = () => {
   const context = useContext(TranslationContext);

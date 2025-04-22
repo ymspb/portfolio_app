@@ -3,7 +3,7 @@
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { useContext } from "react";
-import { TranslationContext } from "../page";
+import { TranslationContext } from "@/context/TranslationProvider";
 import Links from "./Links"
 
 const Fetch = () => {
