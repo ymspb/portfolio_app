@@ -1,18 +1,47 @@
 datasource db {
   provider = "postgresql"
-  url      = env("POSTGRES_PRISMA_URL")
+  url      = env("DATABASE_URL")
 }
 
 generator client {
   provider = "prisma-client-js"
+  output   = "./node_modules/@prisma/client"
 }
 
 model User {
-  id        String   @id @default(uuid())    // 主キー (UUID型)
-  email     String   @unique                 // メールアドレスはユニーク制約
-  name      String                          // 任意の名前
-  password  String                           // パスワード（ハッシュを保存する想定）
-  createdAt DateTime @default(now())          // 作成日時
-  updatedAt DateTime @updatedAt               // 更新日時（自動）
+  id       String   @id @default(uuid())
+  email    String   @unique
+  password String
+  name     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  sessions Session[]
+  accounts Account[]
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id])
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  access_token       String? @db.Text
+  refresh_token      String? @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String? @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id])
+  @@unique([provider, providerAccountId])
 }
 

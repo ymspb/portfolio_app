@@ -19,14 +19,14 @@ const Header = () => {
                 Translation
               </NavigationMenuLink>
             </Link>
-            <Link href="/notes" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                aa
-              </NavigationMenuLink>
-            </Link>
             <Link href="/login" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Documentation
+                Log In
+              </NavigationMenuLink>
+            </Link>
+            <Link href="/sign_in" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Sign In
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
