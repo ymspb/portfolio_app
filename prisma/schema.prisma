@@ -1,0 +1,18 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(uuid())    // 主キー (UUID型)
+  email     String   @unique                 // メールアドレスはユニーク制約
+  name      String                          // 任意の名前
+  password  String                           // パスワード（ハッシュを保存する想定）
+  createdAt DateTime @default(now())          // 作成日時
+  updatedAt DateTime @updatedAt               // 更新日時（自動）
+}
+
