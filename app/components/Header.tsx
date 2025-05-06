@@ -1,3 +1,5 @@
+"use client";
+
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -6,11 +8,16 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
+import { useSession, signOut } from "next-auth/react";
 
 const Header = () => {
+  const { data: session } = useSession();
+
   return (
     <header className="font-medium bg-slate-800 text-white p-4 flex justify-between">
-      <Link href={"/"} className="font-bold pt-1.5">Portfolio App</Link>
+      <Link href={"/"} className="font-bold pt-1.5">
+        Portfolio App
+      </Link>
       <NavigationMenu>
         <NavigationMenuList className="align-middle">
           <NavigationMenuItem>
@@ -19,14 +26,20 @@ const Header = () => {
                 Translation
               </NavigationMenuLink>
             </Link>
-            <Link href="/login" legacyBehavior passHref>
+            {session ? (
+                <NavigationMenuLink onClick={() => signOut({redirect: false})} className={`${navigationMenuTriggerStyle()} cursor-pointer`}>
+                  Log Out
+                </NavigationMenuLink>
+            ) : (
+              <Link href="/log_in" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Log In
+                </NavigationMenuLink>
+              </Link>
+            )}
+            <Link href="/sign_up" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Log In
-              </NavigationMenuLink>
-            </Link>
-            <Link href="/sign_in" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Sign In
+                Sign Up
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
