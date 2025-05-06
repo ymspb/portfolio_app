@@ -41,4 +41,4 @@ Next.jsのAPIRouteを利用して実装。DeepLAPIの操作は`deepl-node`モジ
 #### 2.2.1 ORMの導入(Prisma)
 Vercel上で設定したSupabaseのPostgreSQLにPrismaから接続。
 #### 2.2.2 認証機能の実装
-NextAuth.jsのCredentials認証とOAuthを利用。
+NextAuth.jsのCredentials認証を利用。
