@@ -8,7 +8,7 @@ import type { NextAuthOptions } from 'next-auth';
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   session: {
-    strategy: 'database', // DBベースのセッション管理
+    strategy: 'jwt'
   },
   providers: [
     CredentialsProvider({
@@ -18,23 +18,27 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
+        console.log(credentials?.email, credentials?.password);
         if (!credentials?.email || !credentials?.password) return null;
 
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
         });
 
-        if (!user) return null;
+        if (!user) {
+          console.log('No user found with the email');
+          return null;
+        }
 
         const isValid = await bcrypt.compare(credentials.password, user.password);
-        if (!isValid) return null;
+        if (!isValid) {
+          console.log('Invalid password');
+          return null;
+        }
 
-        return user;
+        return {id: user.id, email: user.email, name: user.name };
       },
     }),
   ],
-  pages: {
-    signIn: '/login', // カスタムログインページ
-  },
   secret: process.env.NEXTAUTH_SECRET,
 };

@@ -7,8 +7,12 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import formSchema from "@/schemas/form/login.schema";
 import { Button } from "@/components/ui/button";
+import { signIn, SignInResponse } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const page = () => {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -17,8 +21,22 @@ const page = () => {
     }
   })
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    // console.log(values);
+    const { email, password } = values;
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false
+    });
+    console.log(res);
+    if (res?.ok) {
+      console.log("login success");
+      router.push("/translation");
+    }
+    else {
+      alert('faild to login');
+    }
   }
 
   return (

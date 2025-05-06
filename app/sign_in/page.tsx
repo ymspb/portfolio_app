@@ -14,8 +14,12 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import formSchema from "@/schemas/form/signin.schema";
 import { Button } from "@/components/ui/button";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 
 const page = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -25,8 +29,27 @@ const page = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
+    const { username, email, password } = values;
+    const res = await fetch("api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password, username })
+      });
+    if (res.ok) {
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: false
+      });
+      router.push("/translate");
+    } else {
+      const { error } = await res.json();
+      console.error("Error:", error);
+    }
   };
 
   return (
