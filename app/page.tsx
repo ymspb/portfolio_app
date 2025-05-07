@@ -13,7 +13,7 @@ export default function Home() {
       <div className="buttons flex flex-row justify-center gap-15 mt-5">
         <div className="p-5">
           <Button asChild>
-            <Link href="/login" className="bg-green-500">ログイン</Link>
+            <Link href="user/log_in" className="bg-green-500">ログイン</Link>
           </Button>
         </div>
         <div className="p-5">

@@ -54,7 +54,7 @@ const page = () => {
 
   return (
     <div className="h-full mx-auto flex flex-col items-center">
-      <h1 className="text-2xl font-bold my-5 ">Sign In to this app</h1>
+      <h1 className="text-2xl font-bold my-5 ">Sign Up to this app</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField

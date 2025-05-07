@@ -31,13 +31,13 @@ const Header = () => {
                   Log Out
                 </NavigationMenuLink>
             ) : (
-              <Link href="/log_in" legacyBehavior passHref>
+              <Link href="/user/log_in" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Log In
                 </NavigationMenuLink>
               </Link>
             )}
-            <Link href="/sign_up" legacyBehavior passHref>
+            <Link href="/user/sign_up" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Sign Up
               </NavigationMenuLink>
