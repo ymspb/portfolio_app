@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 export function LogoutNotifier() {
   const { status } = useSession();
   const prevStatus = useRef(status);
-  console.log(prevStatus.current, status)
+  // console.log(prevStatus.current, status)
 
   useEffect(() => {
     if (prevStatus.current === 'authenticated' && status === 'unauthenticated') {
