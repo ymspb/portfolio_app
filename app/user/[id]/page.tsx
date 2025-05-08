@@ -3,22 +3,29 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { notFound, redirect } from "next/navigation";
 
-export default async function profile({ params }: { params: { id: string }}) {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default async function profile({ params }: PageProps) {
+  const { id } = await params;
   const session = await getServerSession(authOptions);
   if (!session) {
     redirect("user/log_in");
   }
   const user = await prisma.user.findUnique({
     where: {
-      id: params.id,
+      id: id,
     }
   });
   if (!user) {
     notFound();
   }
   return (
-    <div>
-      <h1>{user.name}</h1>
+    <div className="flex flex-col items-center h-screen">
+      <h1 className="text-2xl mt-3">{user.name || "名称未設定"}のプロフィール</h1>
       <p>{user.email}</p>
     </div>
   );

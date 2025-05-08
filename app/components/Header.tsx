@@ -12,6 +12,7 @@ import { useSession, signOut } from "next-auth/react";
 
 const Header = () => {
   const { data: session } = useSession();
+  const userId = session?.user.id as string;
 
   return (
     <header className="font-medium bg-slate-800 text-white p-4 flex justify-between">
@@ -43,7 +44,7 @@ const Header = () => {
               </NavigationMenuLink>
             </Link>
             {session && (
-              <Link href={`/user/${session.user.id}`} legacyBehavior passHref>
+              <Link href={`/user/${userId}`} legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Profile
                 </NavigationMenuLink>
