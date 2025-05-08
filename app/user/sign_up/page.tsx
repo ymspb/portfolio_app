@@ -32,7 +32,7 @@ const page = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
     const { username, email, password } = values;
-    const res = await fetch("api/register", {
+    const res = await fetch("/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const page = () => {
         password,
         redirect: false
       });
-      router.push("/translate");
+      router.push("/translation");
     } else {
       const { error } = await res.json();
       console.error("Error:", error);
