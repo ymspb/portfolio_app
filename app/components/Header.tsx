@@ -42,6 +42,13 @@ const Header = () => {
                 Sign Up
               </NavigationMenuLink>
             </Link>
+            {session && (
+              <Link href={`/user/${session.user.id}`} legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Profile
+                </NavigationMenuLink>
+              </Link>
+            )}
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
