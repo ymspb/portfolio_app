@@ -42,3 +42,8 @@ Next.jsのAPIRouteを利用して実装。DeepLAPIの操作は`deepl-node`モジ
 Vercel上で設定したSupabaseのPostgreSQLにPrismaから接続。
 #### 2.2.2 認証機能の実装
 NextAuth.jsのCredentials認証を利用。
+## 2.3 ユーザープロフィールページの実装
+ユーザー情報の更新、削除も実装。単語帳機能や学習機能とも紐づけてダッシュボードにする予定。
+## 2.4 単語帳機能の実装
+単語帳のために`Words`テーブルを実装。翻訳ページから登録、ダッシュボードから編集と削除を行えるようにする。
+### 2.4.1 スキーマの更新(schema.prisma)

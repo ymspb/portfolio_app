@@ -9,10 +9,23 @@ generator client {
 }
 
 model User {
-  id       String   @id @default(uuid())
-  email    String   @unique
-  password String
-  name     String?
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  words     Word[]
+}
+
+model Word {
+  id            String   @id @default(uuid())
+  userId        String
+  japanese      String
+  english       String
+  correct_count Int      @default(0)
+  wrong_count   Int      @default(0)
+  user          User     @relation(fields: [userId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
