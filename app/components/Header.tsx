@@ -28,7 +28,7 @@ const Header = () => {
               </NavigationMenuLink>
             </Link>
             {session ? (
-                <NavigationMenuLink onClick={() => signOut({redirect: false})} className={`${navigationMenuTriggerStyle()} cursor-pointer`}>
+                <NavigationMenuLink onClick={async () => await signOut({redirect: false})} className={`${navigationMenuTriggerStyle()} cursor-pointer`}>
                   Log Out
                 </NavigationMenuLink>
             ) : (
