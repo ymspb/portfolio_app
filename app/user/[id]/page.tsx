@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { notFound, redirect } from "next/navigation";
 import UpdateForm from "./components/UpdateForm";
 import DeleteButton from "./components/DeleteButton";
+import WordList from "./components/WordList";
 
 export default async function profile({
   params,
@@ -27,21 +28,26 @@ export default async function profile({
   const username = user.name || "名称未設定";
   const email = user.email || "メールアドレス未設定";
 
+  const words = await prisma.word.findMany({
+    where: {
+      userId: id,
+    }
+  });
   return (
     <div className="grid grid-cols-3 gap-4">
       <div className="bg-amber-500 flex flex-col items-center">
         <p>サイドバー</p>
       </div>
       <div className="flex flex-col items-center h-screen">
-        <h1 className="text-2xl mt-3">
-          {username}のプロフィール
-        </h1>
+        <h1 className="text-2xl mt-3">{username}のプロフィール</h1>
         <p>{user.email}</p>
+        <h2>登録した単語</h2>
+        <WordList words={words} />
       </div>
       <div className="flex flex-col items-center border-l">
         <p className="text-lg font-bold my-3">ユーザー情報の編集</p>
-          <UpdateForm username={username} email={email}/>
-          <DeleteButton />
+        <UpdateForm username={username} email={email} />
+        <DeleteButton />
       </div>
     </div>
   );
