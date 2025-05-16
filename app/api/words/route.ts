@@ -25,7 +25,7 @@ export async function POST(req: Request) {
                 english
             }
         });
-        return NextResponse.json(newWord, { status: 201 });
+        return NextResponse.json({ message: 'Word saved successfully', newWord }, { status: 201 });
     } catch (error) {
         return NextResponse.json({ error: 'Failed to create word' }, { status: 500 });
     }
