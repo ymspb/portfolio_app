@@ -5,6 +5,7 @@ import { notFound, redirect } from "next/navigation";
 import UpdateForm from "./components/UpdateForm";
 import DeleteButton from "./components/DeleteButton";
 import WordList from "./components/WordList";
+import Quiz from "./components/Quiz"
 
 export default async function profile({
   params,
@@ -36,7 +37,7 @@ export default async function profile({
   return (
     <div className="grid grid-cols-3 gap-4">
       <div className="bg-amber-500 flex flex-col items-center">
-        <p>サイドバー</p>
+        <Quiz></Quiz>
       </div>
       <div className="flex flex-col items-center h-screen">
         <h1 className="text-2xl mt-3">{username}のプロフィール</h1>
