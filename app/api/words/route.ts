@@ -31,16 +31,16 @@ export async function POST(req: Request) {
     }
 }
 
-// Get all words
-export async function GET(req: Request) {
-    const { userId } = await req.json();
-    try {
-        const words = await prisma.word.findMany({where: { userId }});
-        return NextResponse.json(words, { status: 200 });
-    } catch (error) {
-        return NextResponse.json({ error: 'Failed to fetch words' }, { status: 500 });
-    }
-}
+// // Get all words
+// export async function GET(req: Request) {
+//     const { userId } = await req.json();
+//     try {
+//         const words = await prisma.word.findMany({where: { userId }});
+//         return NextResponse.json(words, { status: 200 });
+//     } catch (error) {
+//         return NextResponse.json({ error: 'Failed to fetch words' }, { status: 500 });
+//     }
+// }
 
 // Update a word by ID
 export async function PUT(req: Request) {

@@ -2,17 +2,17 @@
 
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Word = {
   id: string;
-  japanese: string;
   english: string;
+  japanese: string;
+  userId: string;
 };
 
 const WordList = ({ words }: { words: Word[] }) => {
   const [wordList, setWordList] = useState<Word[]>(words);
-  
   const handleDelete = async (id: string) => {
     const res = await fetch("/api/words", {
       method: "DELETE",

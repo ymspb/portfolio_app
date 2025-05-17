@@ -25,14 +25,14 @@ export default async function profile({
   if (!user) {
     notFound();
   }
+
+  const words = await prisma.word.findMany({
+    where: { userId: id },
+  });
+
   const username = user.name || "名称未設定";
   const email = user.email || "メールアドレス未設定";
 
-  const words = await prisma.word.findMany({
-    where: {
-      userId: id,
-    }
-  });
   return (
     <div className="grid grid-cols-3 gap-4">
       <div className="bg-amber-500 flex flex-col items-center">
